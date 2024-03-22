@@ -3,9 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import QuizScreen from '../screens/QuizScreen';
-import Profile from '../screens/Profile';
-import Stat from '../screens/Stat';
+import Stat from '../screens/Setting';
 import { Ionicons } from '@expo/vector-icons';
+import Result from '../screens/Result';
+import Setting from '../screens/Setting';
 
 
 const TabNavigator = () => {
@@ -23,10 +24,10 @@ const TabNavigator = () => {
                 else if(route.name === 'Home'){
                     iconName = focused?'home':'home-outline';
                 }
-                else if(route.name === 'Profile'){
-                    iconName = focused?'person':'person-outline';
+                else if(route.name === 'Result'){
+                    iconName = focused?'stats-chart':'stats-chart-outline';
                 }
-                else if(route.name === 'Stat'){
+                else if(route.name === 'Settings'){
                     iconName = focused?'settings':'settings-outline';
                 }
                 return <Ionicons name={iconName} size={30}/>
@@ -35,13 +36,13 @@ const TabNavigator = () => {
                 activeTintColor: 'tomato',
                 inactiveTintColor: 'gray',
             },
-            tabBarStyle: { backgroundColor: 'rgba(34,36,40,1)',
+            tabBarStyle: { backgroundColor: 'white',
             height:65,paddingBottom: 8,paddingTop: 8,
         }})}>
             <Tab.Screen name='Home' component={Home}/>
             <Tab.Screen name='Quiz' component={QuizScreen}/>
-            <Tab.Screen name='Profile' component={Profile}/>
-            <Tab.Screen name='Stat' component={Stat}/>
+            <Tab.Screen name='Result' component={Result}/>
+            <Tab.Screen name='Settings' component={Setting}/>
         </Tab.Navigator>
     </NavigationContainer>
   )

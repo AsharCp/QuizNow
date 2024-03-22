@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native'
 const Home = ({navigation}) => {
 
   return (
-    <SafeAreaView className="bg-blue-800 h-full w-full flex items-center justify-center">
+    <SafeAreaView className="bg-red-400 h-full w-full flex items-center justify-center">
         <Text className="text-white">Welcome to the Quiz App</Text>
         <Button title='Start Quiz' onPress={()=>navigation.navigate('Quiz')}/>
     </SafeAreaView>
