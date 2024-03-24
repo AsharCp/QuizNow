@@ -35,7 +35,7 @@ app.get('/api/quizzes', async (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("Server listening on port 5000!");
+  console.log("Server listening on port 8081!");
 });
 
-module.exports = { client, connectToDatabase }; // Make the client and connection function available
+module.exports = { client, connectToDatabase }; 
