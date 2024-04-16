@@ -15,6 +15,7 @@ const Quizcard = ({navigation}) => {
   const [inCorrect2,setInCorrect2] = useState(false)
   const [inCorrect3,setInCorrect3] = useState(false)
   const [inCorrect4,setInCorrect4] = useState(false)
+  const [optionClick,setOptionClick] = useState(false)
   // console.log(score)
 
   
@@ -22,7 +23,7 @@ const Quizcard = ({navigation}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://192.168.120.204:5000/api/quizzes'); // Replace with your server URL
+        const response = await fetch('http://192.168.67.204:5000/api/quizzes'); // Replace with your server URL
         const data = await response.json();
         // console.log(data)
         seQuizData(data);
@@ -53,6 +54,7 @@ const Quizcard = ({navigation}) => {
       navigation.navigate('Result',{data:score});
       setScore(0)
     } 
+    setOptionClick(false)
   }
   // Loading Part
   if (quizData.length === 0) {
@@ -62,6 +64,7 @@ const Quizcard = ({navigation}) => {
   const currentQuestion = quizData[updateQuestion];
   // handleAnswer function
   const handleAnswer=(selectedAnswer,optionId)=>{
+    setOptionClick(true)
     if(selectedAnswer===currentQuestion.answer)
     {
       if(optionId===1)
@@ -121,59 +124,59 @@ const Quizcard = ({navigation}) => {
 
 
   return (
-    <View className="w-80 h-max bg-red-400 p-4 rounded-md">
-          <Text className="p-4 border rounded bg-white text-center">{currentQuestion.question}</Text>
+    <View className="w-80 h-max bg-blue-400 p-4 rounded-md">
+          <Text className="p-4 rounded bg-white text-center font-bold">{currentQuestion.question}</Text>
           <View className="flex items-center justify-center flex-col gap-2 p-2">
             {correct1?
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op1,1)}>
-              <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-green-500">{currentQuestion.options.op1}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op1,1)} disabled={optionClick}>
+              <Text className="py-3 px-16 w-64 rounded text-center bg-green-500">{currentQuestion.options.op1}</Text>
             </TouchableOpacity>
             :inCorrect1?
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op1,1)}>
-               <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-red-500">{currentQuestion.options.op1}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op1,1)} disabled={optionClick}>
+               <Text className="py-3 px-16 w-64 rounded text-center bg-red-500">{currentQuestion.options.op1}</Text>
             </TouchableOpacity>
             :
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op1,1)}>
-               <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-white">{currentQuestion.options.op1}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op1,1)} disabled={optionClick}>
+               <Text className="py-3 px-16 w-64 rounded text-center bg-white">{currentQuestion.options.op1}</Text>
             </TouchableOpacity>
             }
             {correct2?
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op2,2)}>
-               <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-green-500" >{currentQuestion.options.op2}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op2,2)} disabled={optionClick}>
+               <Text className="py-3 px-16 w-64 rounded text-center bg-green-500" >{currentQuestion.options.op2}</Text>
             </TouchableOpacity>
             :inCorrect2?
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op2,2)}>
-               <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-red-500" >{currentQuestion.options.op2}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op2,2)} disabled={optionClick}>
+               <Text className="py-3 px-16 w-64 rounded text-center bg-red-500" >{currentQuestion.options.op2}</Text>
             </TouchableOpacity>
             :
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op2,2)}>
-               <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-white" >{currentQuestion.options.op2}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op2,2)} disabled={optionClick}>
+               <Text className="py-3 px-16 w-64 rounded text-center bg-white" >{currentQuestion.options.op2}</Text>
             </TouchableOpacity>
             }
             {correct3?
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op3,3)}>
-              <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-green-500">{currentQuestion.options.op3}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op3,3)} disabled={optionClick}>
+              <Text className="py-3 px-16 w-64 rounded text-center bg-green-500">{currentQuestion.options.op3}</Text>
             </TouchableOpacity>
             :inCorrect3?
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op3,3)}>
-              <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-red-500">{currentQuestion.options.op3}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op3,3)} disabled={optionClick}>
+              <Text className="py-3 px-16 w-64 rounded text-center bg-red-500">{currentQuestion.options.op3}</Text>
             </TouchableOpacity>
             :
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op3,3)}>
-              <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-white">{currentQuestion.options.op3}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op3,3)} disabled={optionClick}>
+              <Text className="py-3 px-16 w-64 rounded text-center bg-white">{currentQuestion.options.op3}</Text>
             </TouchableOpacity>
             }
             {correct4?
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op4,4)}>
-              <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-green-500">{currentQuestion.options.op4}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op4,4)} disabled={optionClick}>
+              <Text className="py-3 px-16 w-64 rounded text-center bg-green-500">{currentQuestion.options.op4}</Text>
             </TouchableOpacity>
             :inCorrect4?
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op4,4)}>
-              <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-red-500">{currentQuestion.options.op4}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op4,4)} disabled={optionClick}>
+              <Text className="py-3 px-16 w-64 rounded text-center bg-red-500">{currentQuestion.options.op4}</Text>
             </TouchableOpacity>
             :
-            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op4,4)}>
-              <Text className="border py-3 px-16 w-64 rounded-2xl text-center bg-white">{currentQuestion.options.op4}</Text>
+            <TouchableOpacity onPress={()=>handleAnswer(currentQuestion.options.op4,4)} disabled={optionClick}>
+              <Text className="py-3 px-16 w-64 rounded text-center bg-white">{currentQuestion.options.op4}</Text>
             </TouchableOpacity>
             }
 
@@ -181,10 +184,10 @@ const Quizcard = ({navigation}) => {
         </View>
         <View  className='flex flex-row justify-around items-center p-3'>
           <TouchableOpacity onPress={handleQuit}>
-            <Text className='bg-red-700 px-6 py-2'>Quit</Text>
+            <Text className='bg-red-700 px-6 py-2 text-white rounded'>Quit</Text>
           </TouchableOpacity>
           <TouchableOpacity className='flex flex-row justify-around items-center p-3' onPress={handleNextQuestion}>
-            <Text className='bg-green-700 px-6 py-2' >Next</Text>
+            <Text className='bg-green-700 px-6 py-2 text-white rounded' >Next</Text>
           </TouchableOpacity>
         </View>
     </View>

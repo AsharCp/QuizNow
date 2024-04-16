@@ -11,7 +11,7 @@ const Result = ({navigation}) => {
     navigation.navigate('Quiz')
   }
   return (
-    <View className='w-full h-full bg-red-400 flex justify-center items-center'>
+    <View className='w-full h-full bg-blue-400 flex justify-center items-center'>
          <Text>Congratulations!</Text>
          <Text>Your Score is {currentScore}</Text>
          <TouchableOpacity>
