@@ -23,7 +23,7 @@ const Quizcard = ({navigation}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://192.168.67.204:5000/api/quizzes'); // Replace with your server URL
+        const response = await fetch('http://192.168.206.204:5000/api/quizzes'); // Replace with your server URL
         const data = await response.json();
         // console.log(data)
         seQuizData(data);
@@ -124,7 +124,7 @@ const Quizcard = ({navigation}) => {
 
 
   return (
-    <View className="w-80 h-max bg-blue-400 p-4 rounded-md">
+    <View className="w-80 h-max bg-slate-100 p-4 rounded-md">
           <Text className="p-4 rounded bg-white text-center font-bold">{currentQuestion.question}</Text>
           <View className="flex items-center justify-center flex-col gap-2 p-2">
             {correct1?
